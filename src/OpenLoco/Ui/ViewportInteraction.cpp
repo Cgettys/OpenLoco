@@ -5,6 +5,7 @@
 #include "../Input.h"
 #include "../Interop/Interop.hpp"
 #include "../Localisation/FormatArguments.hpp"
+#include "../Localisation/StringIds.h"
 #include "../Localisation/StringManager.h"
 #include "../Objects/CargoObject.h"
 #include "../Objects/ObjectManager.h"
@@ -249,11 +250,6 @@ namespace OpenLoco::Ui::ViewportInteraction
 
         for (auto& company : CompanyManager::companies())
         {
-            if (company.empty())
-            {
-                continue;
-            }
-
             if (company.headquarters_x != pos.x || company.headquarters_y != pos.y || company.headquarters_z != pos.z)
             {
                 continue;

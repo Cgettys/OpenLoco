@@ -12,14 +12,21 @@ namespace OpenLoco::ImageIds
 
     constexpr uint32_t text_palette = 2169;
 
+    constexpr uint32_t window_resize_handle = 2305;
     constexpr uint32_t colour_swatch_recolourable = 2306;
+    constexpr uint32_t colour_swatch_recolourable_raised = 2307;
+    constexpr uint32_t colour_swatch_recolourable_pressed = 2308;
 
     constexpr uint32_t company_list_dropdown_icon = 2309;
     constexpr uint32_t icon_parent_folder = 2310;
     constexpr uint32_t icon_folder = 2311;
 
-    constexpr uint32_t close_button = 2321;
+    constexpr uint32_t curved_border_left = 2315;
+    constexpr uint32_t curved_border_right = 2316;
 
+    constexpr uint32_t close_button = 2321;
+    constexpr uint32_t frame_background_image = 2322;
+    constexpr uint32_t frame_background_image_alt = 2323;
     constexpr uint32_t inline_green_up_arrow = 2324;
     constexpr uint32_t inline_red_down_arrow = 2325;
     constexpr uint32_t progressbar_style0_frame0 = 2326;
@@ -503,4 +510,5 @@ namespace OpenLoco::ImageIds
 
     constexpr uint32_t scenario_completed_tick = 3629;
     constexpr uint32_t owner_jailed = 3630;
+
 }

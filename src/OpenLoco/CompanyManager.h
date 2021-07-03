@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Company.h"
+#include "Core/LocoFixedVector.hpp"
 #include "Map/Map.hpp"
 #include "Types.hpp"
 #include <array>
@@ -14,7 +15,7 @@ namespace OpenLoco::CompanyManager
     CompanyId_t updatingCompanyId();
     void updatingCompanyId(CompanyId_t id);
 
-    std::array<Company, max_companies>& companies();
+    LocoFixedVector<Company> companies();
     Company* get(CompanyId_t id);
     CompanyId_t getControllingId();
     CompanyId_t getSecondaryPlayerId();
@@ -43,4 +44,6 @@ namespace OpenLoco::CompanyManager
 
     void spendMoneyEffect(const Map::Pos3& loc, const CompanyId_t company, const currency32_t amount);
     void applyPaymentToCompany(const CompanyId_t id, const currency32_t payment, const ExpenditureType type);
+    uint32_t competingColourMask(CompanyId_t companyId);
+    uint32_t competingColourMask();
 }

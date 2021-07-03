@@ -1,6 +1,7 @@
 #include "../../Audio/Audio.h"
 #include "../../Graphics/Colour.h"
 #include "../../Interop/Interop.hpp"
+#include "../../Localisation/StringIds.h"
 #include "../../Message.h"
 #include "../../MessageManager.h"
 #include "../../Widget.h"
@@ -11,7 +12,7 @@ using namespace OpenLoco::Interop;
 namespace OpenLoco::Ui::Windows::NewsWindow::Ticker
 {
     Widget widgets[] = {
-        makeWidget({ 0, 0 }, { 111, 26 }, WidgetType::wt_3, 0),
+        makeWidget({ 0, 0 }, { 111, 26 }, WidgetType::wt_3, WindowColour::primary),
         widgetEnd(),
     };
 

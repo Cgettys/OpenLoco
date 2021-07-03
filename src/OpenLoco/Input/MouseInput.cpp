@@ -321,8 +321,7 @@ namespace OpenLoco::Input
             Map::TileManager::mapInvalidateSelectionRect();
             Map::TileManager::mapInvalidateMapSelectionTiles();
 
-            // Reset map selection
-            _mapSelectionFlags = _mapSelectionFlags & 0xFFE0;
+            resetMapSelectionFlag(MapSelectionFlags::enable | MapSelectionFlags::enableConstruct | MapSelectionFlags::unk_02 | MapSelectionFlags::unk_03 | MapSelectionFlags::unk_04);
 
             if (_toolWidgetIndex >= 0)
             {
@@ -561,9 +560,6 @@ namespace OpenLoco::Input
 
                                 for (auto& company : CompanyManager::companies())
                                 {
-                                    if (company.empty())
-                                        continue;
-
                                     if (company.headquarters_x == pos.x
                                         && company.headquarters_y == pos.y
                                         && company.headquarters_z == pos.z)

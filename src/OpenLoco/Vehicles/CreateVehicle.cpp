@@ -6,6 +6,7 @@
 #include "../Economy/Expenditures.h"
 #include "../Entities/EntityManager.h"
 #include "../GameCommands/GameCommands.h"
+#include "../Localisation/StringIds.h"
 #include "../Map/Tile.h"
 #include "../Objects/ObjectManager.h"
 #include "../Objects/RoadObject.h"
@@ -62,8 +63,6 @@ namespace OpenLoco::Vehicles
 
         const auto& companies = CompanyManager::companies();
         auto totalAiVehicles = std::accumulate(companies.begin(), companies.end(), 0, [](int32_t& total, const auto& company) {
-            if (company.empty())
-                return total;
             if (isPlayerCompany(company.id()))
                 return total;
             return total + std::accumulate(std::begin(company.transportTypeCount), std::end(company.transportTypeCount), 0);

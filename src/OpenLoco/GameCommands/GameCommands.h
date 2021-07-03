@@ -666,6 +666,9 @@ namespace OpenLoco::GameCommands
         return GameCommands::doCommand(GameCommand::cheat, regs) != FAILURE;
     }
 
+    // Defined in GameCommands/ChangeCompanyColour.cpp
+    void changeCompanyColour(registers& regs);
+
     // Defined in GameCommands/Cheat.cpp
     void cheat(registers& regs);
 
@@ -674,6 +677,9 @@ namespace OpenLoco::GameCommands
 
     // Defined in GameCommands/RenameIndustry.cpp
     void renameIndustry(registers& regs);
+
+    // Defined in GameCommands/RenameStation.cpp
+    void renameStation(registers& regs);
 
     // Defined in GameCommands/RenameTown.cpp
     void renameTown(registers& regs);

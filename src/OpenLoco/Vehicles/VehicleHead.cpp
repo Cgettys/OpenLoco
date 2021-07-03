@@ -11,6 +11,7 @@
 #include "../IndustryManager.h"
 #include "../Interop/Interop.hpp"
 #include "../Localisation/FormatArguments.hpp"
+#include "../Localisation/StringIds.h"
 #include "../Map/TileManager.h"
 #include "../Math/Bound.hpp"
 #include "../Math/Trigonometry.hpp"
@@ -117,24 +118,15 @@ namespace OpenLoco::Vehicles
                 break;
             case TransportMode::air:
                 continueUpdating = updateAir();
-                if (continueUpdating)
-                {
-                    tryCreateInitialMovementSound();
-                }
                 break;
             case TransportMode::water:
                 continueUpdating = updateWater();
-                if (continueUpdating)
-                {
-                    tryCreateInitialMovementSound();
-                }
                 break;
         }
-        // TODO move to here when all update mode functions implemented
-        //if (continueUpdating)
-        //{
-        //    tryCreateInitialMovementSound();
-        //}
+        if (continueUpdating)
+        {
+            tryCreateInitialMovementSound();
+        }
         return continueUpdating;
     }
 
@@ -877,7 +869,6 @@ namespace OpenLoco::Vehicles
         {
             updateUnloadCargo();
 
-            tryCreateInitialMovementSound();
             return true;
         }
         else if (status == Status::loading)
@@ -981,7 +972,6 @@ namespace OpenLoco::Vehicles
         {
             status = Status::travelling;
         }
-        tryCreateInitialMovementSound();
         return true;
     }
 
@@ -994,7 +984,6 @@ namespace OpenLoco::Vehicles
             var_52 = 1;
             sub_4ADB47(false);
             var_52 = temp;
-            tryCreateInitialMovementSound();
             return true;
         }
         else
@@ -1024,7 +1013,6 @@ namespace OpenLoco::Vehicles
         auto* vehType2 = train.veh2;
         if (vehType2->var_36 != var_36 || vehType2->var_2E != var_2E)
         {
-            tryCreateInitialMovementSound();
             return true;
         }
 
@@ -1035,11 +1023,7 @@ namespace OpenLoco::Vehicles
         {
             stationId = StationId::null;
             status = Status::brokenDown;
-
-            tryCreateInitialMovementSound();
-            return true;
         }
-        tryCreateInitialMovementSound();
         return true;
     }
 
@@ -1073,14 +1057,12 @@ namespace OpenLoco::Vehicles
         Vehicle train(this);
         if (var_36 != train.veh2->var_36 || train.veh2->var_2E != var_2E)
         {
-            tryCreateInitialMovementSound();
             return true;
         }
 
         // Manual control is going too fast at this point to stop at the station
         if (var_0C & Flags0C::manualControl)
         {
-            tryCreateInitialMovementSound();
             return true;
         }
 
@@ -1089,7 +1071,6 @@ namespace OpenLoco::Vehicles
         updateLastJourneyAverageSpeed();
         beginUnloading();
 
-        tryCreateInitialMovementSound();
         return true;
     }
 
@@ -1098,7 +1079,6 @@ namespace OpenLoco::Vehicles
     {
         if (updateLoadCargo())
         {
-            tryCreateInitialMovementSound();
             return true;
         }
 
@@ -1108,7 +1088,6 @@ namespace OpenLoco::Vehicles
 
         if (var_0C & Flags0C::manualControl)
         {
-            tryCreateInitialMovementSound();
             return true;
         }
 
@@ -1117,7 +1096,6 @@ namespace OpenLoco::Vehicles
             return sub_4A8F22();
         }
 
-        tryCreateInitialMovementSound();
         return true;
     }
 
@@ -1153,7 +1131,6 @@ namespace OpenLoco::Vehicles
         {
             status = Status::approaching;
             stationId = nextStation;
-            tryCreateInitialMovementSound();
             return true;
         }
         else if (al == 2)
@@ -1161,14 +1138,12 @@ namespace OpenLoco::Vehicles
             Vehicle train(this);
             if (var_36 != train.veh2->var_36 || train.veh2->var_2E != var_2E)
             {
-                tryCreateInitialMovementSound();
                 return true;
             }
             return sub_4A8F22();
         }
         else
         {
-            tryCreateInitialMovementSound();
             return true;
         }
     }
@@ -1181,14 +1156,12 @@ namespace OpenLoco::Vehicles
         {
             status = Status::approaching;
             stationId = nextStation;
-            tryCreateInitialMovementSound();
             return true;
         }
         else if (al == 3)
         {
             if (train.veh2->var_36 != var_36 || train.veh2->var_2E != var_2E)
             {
-                tryCreateInitialMovementSound();
                 return true;
             }
 
@@ -1201,7 +1174,6 @@ namespace OpenLoco::Vehicles
             {
                 var_5C = 2;
                 vehType1->var_48 |= 1 << 0;
-                tryCreateInitialMovementSound();
                 return true;
             }
 
@@ -1219,14 +1191,12 @@ namespace OpenLoco::Vehicles
                     {
                         var_5C = 2;
                         vehType1->var_48 |= 1 << 0;
-                        tryCreateInitialMovementSound();
                         return true;
                     }
                     return landReverseFromSignal();
                 }
 
                 // Keep waiting at the signal
-                tryCreateInitialMovementSound();
                 return true;
             }
             else
@@ -1239,7 +1209,6 @@ namespace OpenLoco::Vehicles
                         {
                             var_5C = 2;
                             vehType1->var_48 |= 1 << 0;
-                            tryCreateInitialMovementSound();
                             return true;
                         }
                     }
@@ -1256,7 +1225,6 @@ namespace OpenLoco::Vehicles
                 }
 
                 // Keep waiting at the signal
-                tryCreateInitialMovementSound();
                 return true;
             }
         }
@@ -1282,7 +1250,6 @@ namespace OpenLoco::Vehicles
             }
             else
             {
-                tryCreateInitialMovementSound();
                 return true;
             }
         }
@@ -1296,7 +1263,6 @@ namespace OpenLoco::Vehicles
 
         if (var_36 != train.veh2->var_36 || train.veh2->var_2E != var_2E)
         {
-            tryCreateInitialMovementSound();
             return true;
         }
         return sub_4A8F22();
@@ -2549,6 +2515,61 @@ namespace OpenLoco::Vehicles
         train.cars.firstCar.body->invalidateSprite();
     }
 
+    uint8_t VehicleHead::getLoadingModifier(const VehicleBogie* bogie)
+    {
+        switch (mode)
+        {
+            default:
+            case TransportMode::air:
+            case TransportMode::water:
+                return 1;
+            case TransportMode::rail:
+            {
+                auto tile = Map::TileManager::get(Pos2{ bogie->tile_x, bogie->tile_y });
+                auto direction = bogie->var_2C & 3;
+                auto trackId = (bogie->var_2C >> 3) & 0x3F;
+                auto loadingModifier = 12;
+                auto* elStation = tile.trackStation(trackId, direction, bogie->tile_base_z);
+                if (elStation != nullptr)
+                {
+                    if (elStation->isFlag5() || elStation->isGhost())
+                        break;
+
+                    if (elStation->stationId() != stationId)
+                        break;
+
+                    loadingModifier = 1;
+                }
+                return loadingModifier;
+            }
+            case TransportMode::road:
+            {
+                auto tile = Map::TileManager::get(Pos2{ bogie->tile_x, bogie->tile_y });
+                auto direction = bogie->var_2C & 3;
+                auto roadId = (bogie->var_2C >> 3) & 0xF;
+                auto loadingModifier = 2;
+                auto* elStation = tile.roadStation(roadId, direction, bogie->tile_base_z);
+                if (elStation != nullptr)
+                {
+                    if (elStation->isFlag5() || elStation->isGhost())
+                        break;
+
+                    if (elStation->stationId() != stationId)
+                        break;
+
+                    auto* roadStationObj = ObjectManager::get<RoadStationObject>(elStation->objectId());
+                    if (!(roadStationObj->flags & RoadStationFlags::roadEnd))
+                    {
+                        var_5F |= Flags5F::unk_0;
+                    }
+                    loadingModifier = 1;
+                }
+                return loadingModifier;
+            }
+        }
+        return 1;
+    }
+
     // 0x004B9A88
     bool VehicleHead::updateUnloadCargoComponent(VehicleCargo& cargo, VehicleBogie* bogie)
     {
@@ -2676,57 +2697,7 @@ namespace OpenLoco::Vehicles
             }
         }
 
-        uint8_t loadingModifier = 1;
-        switch (mode)
-        {
-            case TransportMode::air:
-            case TransportMode::water:
-                break;
-            case TransportMode::rail:
-            {
-                auto tile = Map::TileManager::get(Pos2{ bogie->tile_x, bogie->tile_y });
-                auto direction = bogie->var_2C & 3;
-                auto trackId = (bogie->var_2C >> 3) & 0x3F;
-                loadingModifier = 12;
-                auto* elStation = tile.trackStation(trackId, direction, bogie->tile_base_z);
-                if (elStation != nullptr)
-                {
-                    if (elStation->isFlag5() || elStation->isGhost())
-                        break;
-
-                    if (elStation->stationId() != stationId)
-                        break;
-
-                    loadingModifier = 1;
-                }
-                break;
-            }
-            case TransportMode::road:
-            {
-                auto tile = Map::TileManager::get(Pos2{ bogie->tile_x, bogie->tile_y });
-                auto direction = bogie->var_2C & 3;
-                auto roadId = (bogie->var_2C >> 3) & 0xF;
-                loadingModifier = 2;
-                auto* elStation = tile.roadStation(roadId, direction, bogie->tile_base_z);
-                if (elStation != nullptr)
-                {
-                    if (elStation->isFlag5() || elStation->isGhost())
-                        break;
-
-                    if (elStation->stationId() != stationId)
-                        break;
-
-                    auto* roadStationObj = ObjectManager::get<RoadStationObject>(elStation->objectId());
-                    if (!(roadStationObj->flags & RoadStationFlags::roadEnd))
-                    {
-                        var_5F |= Flags5F::unk_0;
-                    }
-                    loadingModifier = 1;
-                }
-                break;
-            }
-            break;
-        }
+        uint8_t loadingModifier = getLoadingModifier(bogie);
 
         auto* cargoObj = ObjectManager::get<CargoObject>(cargo.type);
         cargoTransferTimeout = static_cast<uint16_t>(std::min<uint32_t>((cargoObj->var_4 * cargo.qty * loadingModifier) / 256, std::numeric_limits<uint16_t>::max()));
@@ -2736,6 +2707,22 @@ namespace OpenLoco::Vehicles
         return true;
     }
 
+    void VehicleHead::beginLoading()
+    {
+        status = Status::loading;
+        cargoTransferTimeout = 10;
+
+        Vehicle train(this);
+        for (auto& car : train.cars)
+        {
+            for (auto& carComponent : car)
+            {
+                carComponent.front->var_5F |= Flags5F::unk_0;
+                carComponent.back->var_5F |= Flags5F::unk_0;
+                carComponent.body->var_5F |= Flags5F::unk_0;
+            }
+        }
+    }
     // 0x004B9A2A
     void VehicleHead::updateUnloadCargo()
     {
@@ -2806,18 +2793,7 @@ namespace OpenLoco::Vehicles
             Audio::playSound(Audio::SoundId::income, loc);
         }
 
-        cargoTransferTimeout = 10;
-        for (auto& car : train.cars)
-        {
-            for (auto& carComponent : car)
-            {
-                carComponent.front->var_5F |= Flags5F::unk_0;
-                carComponent.back->var_5F |= Flags5F::unk_0;
-                carComponent.body->var_5F |= Flags5F::unk_0;
-            }
-        }
-
-        status = Status::loading;
+        beginLoading();
     }
 
     // 0x004BA142 returns false when loaded

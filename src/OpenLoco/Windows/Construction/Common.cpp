@@ -401,7 +401,7 @@ namespace OpenLoco::Ui::Windows::Construction
 
             Common::sub_49FEC7();
             TileManager::mapInvalidateMapSelectionTiles();
-            _mapSelectionFlags = _mapSelectionFlags & ~MapSelectFlag::enableConstruct;
+            Input::resetMapSelectionFlag(Input::MapSelectionFlags::enableConstruct);
             _trackCost = 0x80000000;
             _signalCost = 0x80000000;
             _stationCost = 0x80000000;
@@ -692,7 +692,7 @@ namespace OpenLoco::Ui::Windows::Construction
             sub_49FEC7();
             WindowManager::viewportSetVisibility(WindowManager::ViewportVisibility::reset);
             TileManager::mapInvalidateMapSelectionTiles();
-            _mapSelectionFlags = _mapSelectionFlags & ~MapSelectFlag::enableConstruct;
+            Input::resetMapSelectionFlag(Input::MapSelectionFlags::enableConstruct);
             hideDirectionArrows();
             hideGridlines();
         }
@@ -798,7 +798,7 @@ namespace OpenLoco::Ui::Windows::Construction
             window->owner = _playerCompany;
 
             auto skin = ObjectManager::get<InterfaceSkinObject>();
-            window->colours[1] = skin->colour_0D;
+            window->setColour(WindowColour::secondary, skin->colour_0D);
 
             WindowManager::sub_4CEE0B(window);
             Ui::Windows::showDirectionArrows();

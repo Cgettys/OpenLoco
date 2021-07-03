@@ -4,6 +4,7 @@
 #include "../../Graphics/ImageIds.h"
 #include "../../Input.h"
 #include "../../Localisation/FormatArguments.hpp"
+#include "../../Localisation/StringIds.h"
 #include "../../Objects/BridgeObject.h"
 #include "../../Objects/ObjectManager.h"
 #include "../../Objects/RoadObject.h"
@@ -71,29 +72,29 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
 
     Widget widgets[] = {
         commonWidgets(138, 276, StringIds::stringid_2),
-        makeWidget({ 3, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_left_hand_curve_very_small, StringIds::tooltip_left_hand_curve_very_small),
-        makeWidget({ 3, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_left_hand_curve_small, StringIds::tooltip_left_hand_curve_small),
-        makeWidget({ 25, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_left_hand_curve, StringIds::tooltip_left_hand_curve),
-        makeWidget({ 47, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_left_hand_curve_large, StringIds::tooltip_left_hand_curve_large),
-        makeWidget({ 69, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_right_hand_curve_large, StringIds::tooltip_right_hand_curve_large),
-        makeWidget({ 91, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_right_hand_curve, StringIds::tooltip_right_hand_curve),
-        makeWidget({ 113, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_right_hand_curve_small, StringIds::tooltip_right_hand_curve_small),
-        makeWidget({ 113, 45 }, { 22, 24 }, WidgetType::wt_9, 1, ImageIds::construction_right_hand_curve_very_small, StringIds::tooltip_right_hand_curve_very_small),
-        makeWidget({ 9, 69 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_s_bend_dual_track_left, StringIds::tooltip_s_bend_left_dual_track),
-        makeWidget({ 33, 69 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_s_bend_left, StringIds::tooltip_s_bend_left),
-        makeWidget({ 57, 69 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_straight, StringIds::tooltip_straight),
-        makeWidget({ 81, 69 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_s_bend_right, StringIds::tooltip_s_bend_right),
-        makeWidget({ 105, 69 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_s_bend_dual_track_right, StringIds::tooltip_s_bend_right_dual_track),
-        makeWidget({ 9, 96 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_steep_slope_down, StringIds::tooltip_steep_slope_down),
-        makeWidget({ 33, 96 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_slope_down, StringIds::tooltip_slope_down),
-        makeWidget({ 57, 96 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_level, StringIds::tooltip_level),
-        makeWidget({ 81, 96 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_slope_up, StringIds::tooltip_slope_up),
-        makeWidget({ 105, 96 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::construction_steep_slope_up, StringIds::tooltip_steep_slope_up),
-        makeWidget({ 40, 123 }, { 58, 20 }, WidgetType::wt_18, 1, StringIds::empty, StringIds::tooltip_bridge_stats),
-        makeWidget({ 86, 124 }, { 11, 18 }, WidgetType::wt_11, 1, StringIds::dropdown, StringIds::tooltip_bridge_stats),
-        makeWidget({ 3, 145 }, { 132, 100 }, WidgetType::wt_5, 1, 0xFFFFFFFF, StringIds::tooltip_construct),
-        makeWidget({ 6, 248 }, { 46, 24 }, WidgetType::wt_9, 1, ImageIds::construction_remove, StringIds::tooltip_remove),
-        makeWidget({ 57, 248 }, { 24, 24 }, WidgetType::wt_9, 1, ImageIds::rotate_object, StringIds::rotate_90),
+        makeWidget({ 3, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_left_hand_curve_very_small, StringIds::tooltip_left_hand_curve_very_small),
+        makeWidget({ 3, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_left_hand_curve_small, StringIds::tooltip_left_hand_curve_small),
+        makeWidget({ 25, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_left_hand_curve, StringIds::tooltip_left_hand_curve),
+        makeWidget({ 47, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_left_hand_curve_large, StringIds::tooltip_left_hand_curve_large),
+        makeWidget({ 69, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_right_hand_curve_large, StringIds::tooltip_right_hand_curve_large),
+        makeWidget({ 91, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_right_hand_curve, StringIds::tooltip_right_hand_curve),
+        makeWidget({ 113, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_right_hand_curve_small, StringIds::tooltip_right_hand_curve_small),
+        makeWidget({ 113, 45 }, { 22, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_right_hand_curve_very_small, StringIds::tooltip_right_hand_curve_very_small),
+        makeWidget({ 9, 69 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_s_bend_dual_track_left, StringIds::tooltip_s_bend_left_dual_track),
+        makeWidget({ 33, 69 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_s_bend_left, StringIds::tooltip_s_bend_left),
+        makeWidget({ 57, 69 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_straight, StringIds::tooltip_straight),
+        makeWidget({ 81, 69 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_s_bend_right, StringIds::tooltip_s_bend_right),
+        makeWidget({ 105, 69 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_s_bend_dual_track_right, StringIds::tooltip_s_bend_right_dual_track),
+        makeWidget({ 9, 96 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_steep_slope_down, StringIds::tooltip_steep_slope_down),
+        makeWidget({ 33, 96 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_slope_down, StringIds::tooltip_slope_down),
+        makeWidget({ 57, 96 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_level, StringIds::tooltip_level),
+        makeWidget({ 81, 96 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_slope_up, StringIds::tooltip_slope_up),
+        makeWidget({ 105, 96 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_steep_slope_up, StringIds::tooltip_steep_slope_up),
+        makeWidget({ 40, 123 }, { 58, 20 }, WidgetType::wt_18, WindowColour::secondary, StringIds::empty, StringIds::tooltip_bridge_stats),
+        makeWidget({ 86, 124 }, { 11, 18 }, WidgetType::wt_11, WindowColour::secondary, StringIds::dropdown, StringIds::tooltip_bridge_stats),
+        makeWidget({ 3, 145 }, { 132, 100 }, WidgetType::wt_5, WindowColour::secondary, 0xFFFFFFFF, StringIds::tooltip_construct),
+        makeWidget({ 6, 248 }, { 46, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::construction_remove, StringIds::tooltip_remove),
+        makeWidget({ 57, 248 }, { 24, 24 }, WidgetType::wt_9, WindowColour::secondary, ImageIds::rotate_object, StringIds::rotate_90),
         widgetEnd(),
     };
 
@@ -279,7 +280,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
     static void activateSelectedRoadWidgets(Window* window)
     {
         TileManager::mapInvalidateMapSelectionTiles();
-        _mapSelectionFlags = _mapSelectionFlags | (1 << 3) | (1 << 1);
+        Input::setMapSelectionFlags(Input::MapSelectionFlags::enableConstruct | Input::MapSelectionFlags::unk_03);
 
         auto road = getRoadPieceId(_lastSelectedTrackPiece, _lastSelectedTrackGradient, _constructionRotation);
 
@@ -474,7 +475,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
     static void activateSelectedTrackWidgets(Window* window)
     {
         TileManager::mapInvalidateMapSelectionTiles();
-        _mapSelectionFlags = _mapSelectionFlags | (1 << 3) | (1 << 1);
+        Input::setMapSelectionFlags(Input::MapSelectionFlags::enableConstruct | Input::MapSelectionFlags::unk_03);
 
         auto track = getTrackPieceId(_lastSelectedTrackPiece, _lastSelectedTrackGradient, _constructionRotation);
 
@@ -1238,7 +1239,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
         auto width = 155;
         auto height = widget.height();
 
-        Dropdown::show(x, y, width, height, self->colours[1], bridgeCount, 22, flags);
+        Dropdown::show(x, y, width, height, self->getColour(WindowColour::secondary), bridgeCount, 22, flags);
         for (auto i = 0; i < 9; i++)
         {
             auto bridge = _bridgeList[i];
@@ -1644,7 +1645,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
             int16_t roadHeight = 0;
 
             auto i = 0;
-            if (_mapSelectionFlags & (1 << 1))
+            if (Input::hasMapSelectionFlag(Input::MapSelectionFlags::enableConstruct))
             {
                 for (auto& tile = _mapSelectedTiles[i]; tile.x != -1; tile = _mapSelectedTiles[++i])
                 {
@@ -1662,7 +1663,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
             }
             // loc_4A23F8
             _word_1136000 = roadHeight;
-            _mapSelectionFlags = _mapSelectionFlags & ~((1 << 2) | (1 << 1) | (1 << 0));
+            Input::resetMapSelectionFlag(Input::MapSelectionFlags::enable | Input::MapSelectionFlags::enableConstruct | Input::MapSelectionFlags::unk_02);
 
             auto height = sub_478361(x, y);
             Pos2 mapPos;
@@ -1745,7 +1746,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
             int16_t trackHeight = 0;
             auto i = 0;
 
-            if (_mapSelectionFlags & (1 << 1))
+            if (Input::hasMapSelectionFlag(Input::MapSelectionFlags::enableConstruct))
             {
                 for (auto& tile = _mapSelectedTiles[i]; tile.x != -1; tile = _mapSelectedTiles[++i])
                 {
@@ -1762,7 +1763,7 @@ namespace OpenLoco::Ui::Windows::Construction::Construction
                 }
             }
             _word_1136000 = trackHeight;
-            _mapSelectionFlags = _mapSelectionFlags & ~((1 << 2) | (1 << 1) | (1 << 0));
+            Input::resetMapSelectionFlag(Input::MapSelectionFlags::enable | Input::MapSelectionFlags::enableConstruct | Input::MapSelectionFlags::unk_02);
 
             auto height = sub_4A4011(x, y);
             Pos2 mapPos;

@@ -4,8 +4,6 @@
 #include "Core/Optional.hpp"
 #include "Graphics/Gfx.h"
 #include "Interop/Interop.hpp"
-#include "Localisation/StringIds.h"
-#include "Localisation/StringManager.h"
 #include "Map/Tile.h"
 #include "Objects/ObjectManager.h"
 #include "Types.hpp"
@@ -60,6 +58,15 @@ namespace OpenLoco::Ui
         wt_28,
         wt_29,
         end = 30,
+    };
+
+    enum class WindowColour : uint8_t
+    {
+        primary,
+        secondary,
+        tertiary,
+        quaternary,
+        count
     };
 
     namespace Scrollbars
@@ -287,7 +294,7 @@ namespace OpenLoco::Ui
         uint8_t pad_883[1];
         CompanyId_t owner = CompanyId::null; // 0x884
         uint8_t var_885 = 0xFF;
-        uint8_t colours[4]; // 0x886
+        uint8_t colours[static_cast<uint8_t>(WindowColour::count)]; // 0x886
         int16_t var_88A;
         int16_t var_88C;
 
@@ -334,6 +341,17 @@ namespace OpenLoco::Ui
         constexpr void setSize(Gfx::ui_size_t size)
         {
             setSize(size, size);
+        }
+
+        constexpr uint8_t getColour(WindowColour index) const
+        {
+            assert(index < WindowColour::count);
+            return colours[static_cast<uint8_t>(index)];
+        }
+        constexpr void setColour(WindowColour index, Colour_t colour)
+        {
+            assert(index < WindowColour::count);
+            colours[static_cast<uint8_t>(index)] = colour;
         }
 
         bool isVisible()
