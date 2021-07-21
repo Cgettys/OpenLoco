@@ -92,6 +92,7 @@ namespace OpenLoco::Vehicles
         {
             GameCommands::do12(newHead->id, 2);
         }
+        GameCommands::setExpenditureType(ExpenditureType::VehiclePurchases);
         return totalCost;
     }
 

@@ -2270,3 +2270,5 @@ strings:
   2215: "No cargo type selected"
   2216: "{SMALLFONT}{COLOUR BLACK}Open a station window to filter by station"
   2217: "{SMALLFONT}{COLOUR BLACK}Select a cargo type from the list of available cargo"
+  2218: "Overhaul vehicle"
+  2219: "Can't overhaul vehicle..."

@@ -115,6 +115,7 @@ namespace OpenLoco::GameCommands
         renameIndustry = 79,
         vehicleClone = 80,
         cheat = 81,
+        vehicleOverhaul = 82,
     };
 
     enum class LoadOrQuitMode : uint16_t
@@ -191,12 +192,22 @@ namespace OpenLoco::GameCommands
         return doCommand(GameCommand::vehicleCreate, regs);
     }
 
+    // Sell Vehicle
     inline void do_6(EntityId_t car)
     {
         registers regs;
         regs.bl = Flags::apply;
         regs.dx = car;
         doCommand(GameCommand::vehicleSell, regs);
+    }
+
+
+    inline uint32_t queryDo_6(EntityId_t car)
+    {
+        registers regs;
+        regs.bl = 0;
+        regs.dx = car;
+        return doCommand(GameCommand::vehicleSell, regs);
     }
 
     // Change loan
@@ -666,6 +677,13 @@ namespace OpenLoco::GameCommands
         return GameCommands::doCommand(GameCommand::cheat, regs) != FAILURE;
     }
 
+    inline bool do_82(uint16_t head)
+    {
+        registers regs;
+        regs.bl = Flags::apply;
+        regs.ax = head;
+        return GameCommands::doCommand(GameCommand::vehicleOverhaul, regs) != FAILURE;
+    }
     // Defined in GameCommands/ChangeCompanyColour.cpp
     void changeCompanyColour(registers& regs);
 

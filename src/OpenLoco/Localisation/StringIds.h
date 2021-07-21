@@ -1616,4 +1616,6 @@ namespace OpenLoco::StringIds
     constexpr string_id no_cargo_selected = 2215;
     constexpr string_id tooltip_open_station_window_to_filter = 2216;
     constexpr string_id tooltip_select_cargo_type = 2217;
+    constexpr string_id dropdown_overhaul_vehicle = 2218;
+    constexpr string_id cant_overhaul_vehicle = 2219;
 }

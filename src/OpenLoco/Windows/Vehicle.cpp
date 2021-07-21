@@ -987,6 +987,16 @@ namespace OpenLoco::Ui::Windows::Vehicle
             }
         }
 
+        static void overhaulVehicle(Window* self)
+        {
+            auto head = Common::getVehicle(self);
+            //TODO - is this working how I expect
+            GameCommands::setErrorTitle(StringIds::cant_overhaul_vehicle);
+            if (GameCommands::do_82(head->head))
+            {
+            }
+        }
+
         // 0x004B3823
         static void onMouseUp(Window* self, WidgetIndex_t widgetIndex)
         {
@@ -1036,6 +1046,7 @@ namespace OpenLoco::Ui::Windows::Vehicle
 
             Dropdown::add(0, StringIds::dropdown_stringid, StringIds::dropdown_modify_vehicle);
             Dropdown::add(1, StringIds::dropdown_stringid, StringIds::dropdown_clone_vehicle);
+            Dropdown::add(2, StringIds::dropdown_stringid, StringIds::dropdown_overhaul_vehicle);
 
             Widget* widget = &self->widgets[widx::buildNew];
             Dropdown::showText(
@@ -1044,7 +1055,7 @@ namespace OpenLoco::Ui::Windows::Vehicle
                 widget->width(),
                 widget->height(),
                 self->getColour(WindowColour::secondary),
-                2,
+                3,
                 0);
 
             Dropdown::setItemSelected(0);
@@ -1064,6 +1075,9 @@ namespace OpenLoco::Ui::Windows::Vehicle
             else if (itemIndex == 1)
             {
                 cloneVehicle(self);
+            } else if (itemIndex == 2)
+            {
+                overhaulVehicle(self);
             }
         }
 
