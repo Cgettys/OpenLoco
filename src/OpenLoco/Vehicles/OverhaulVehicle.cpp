@@ -40,7 +40,7 @@ namespace OpenLoco::Vehicles
             if (sellCost == GameCommands::FAILURE)
             {
                 totalSellCost = GameCommands::FAILURE;
-            break;
+                break;
             }
             else
             {

@@ -1075,7 +1075,8 @@ namespace OpenLoco::Ui::Windows::Vehicle
             else if (itemIndex == 1)
             {
                 cloneVehicle(self);
-            } else if (itemIndex == 2)
+            }
+            else if (itemIndex == 2)
             {
                 overhaulVehicle(self);
             }
