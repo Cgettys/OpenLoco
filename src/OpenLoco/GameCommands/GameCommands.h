@@ -201,6 +201,15 @@ namespace OpenLoco::GameCommands
         doCommand(GameCommand::vehicleSell, regs);
     }
 
+    // Sell Vehicle
+    inline uint32_t queryDo_6(EntityId_t car)
+    {
+        registers regs;
+        regs.bl = 0;
+        regs.dx = car;
+        return doCommand(GameCommand::vehicleSell, regs);
+    }
+
     // Change loan
     inline void do_9(currency32_t newLoan)
     {

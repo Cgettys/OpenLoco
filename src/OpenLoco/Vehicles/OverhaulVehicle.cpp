@@ -35,7 +35,8 @@ namespace OpenLoco::Vehicles
             {
                 totalBuyCost += buyCost;
             }
-            auto sellCost = -car.front->refund_cost; // TODO is this right with inflation?
+            //auto sellCost = -car.front->refund_cost; // TODO is this right with inflation?
+            auto sellCost = GameCommands::queryDo_6(car.front->id);
             if (sellCost == GameCommands::FAILURE)
             {
                 totalSellCost = GameCommands::FAILURE;
