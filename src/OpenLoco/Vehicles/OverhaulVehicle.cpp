@@ -35,7 +35,7 @@ namespace OpenLoco::Vehicles
             {
                 totalBuyCost += buyCost;
             }
-            auto sellCost = GameCommands::queryDo_6(car.front->id);
+            auto sellCost = -car.front->refund_cost; // TODO is this right with inflation?
             if (sellCost == GameCommands::FAILURE)
             {
                 totalSellCost = GameCommands::FAILURE;
@@ -61,7 +61,7 @@ namespace OpenLoco::Vehicles
         }
 
         // Repair components
-        auto newReliability = 100;
+        auto newReliability = 0;
         // TODO encapsulate and understand logic stolen from Cheat.cpp
         existingTrain.veh2->reliability = newReliability;
         for (auto& car : existingTrain.cars)
