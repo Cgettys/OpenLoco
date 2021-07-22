@@ -21,7 +21,8 @@ namespace OpenLoco::Vehicles
         {
             auto* vehObject = car.body->object();
             // Unpowered vehicles can not breakdown - so don't repair them
-            if (vehObject->power == 0){
+            if (vehObject->power == 0)
+            {
                 continue;
             }
 
@@ -35,8 +36,8 @@ namespace OpenLoco::Vehicles
             {
                 totalBuyCost += buyCost;
             }
-            //auto sellCost = -car.front->refund_cost; // TODO is this right with inflation?
-            auto sellCost = GameCommands::queryDo_6(car.front->id);
+            auto sellCost = -car.front->refund_cost; // TODO is this right with inflation?
+            //auto sellCost = GameCommands::queryDo_6(car.front->id);
             if (sellCost == GameCommands::FAILURE)
             {
                 totalSellCost = GameCommands::FAILURE;
