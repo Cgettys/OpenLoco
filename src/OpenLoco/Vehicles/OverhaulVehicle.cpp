@@ -4,6 +4,7 @@
 #include "../Ui/WindowManager.h"
 #include "Orders.h"
 #include "Vehicle.h"
+#include "CreateVehicle.h"
 
 using namespace OpenLoco::Interop;
 
@@ -63,20 +64,23 @@ namespace OpenLoco::Vehicles
         }
 
         // Repair components
-        auto newReliability = 0;
         // TODO encapsulate and understand logic stolen from Cheat.cpp
-        existingTrain.veh2->reliability = newReliability;
+        //auto newReliability = 0;
+        //existingTrain.veh2->reliability = newReliability;
         for (auto& car : existingTrain.cars)
         {
+
             auto* vehObject = car.body->object();
             // Unpowered vehicles can not breakdown - so don't repair them
             if (vehObject->power == 0)
             {
                 continue;
             }
-
+            auto likeNewObject = ObjectManager::get<VehicleObject>(car.front->object_id);
             auto& component = *(car.begin());
-            component.front->reliability = newReliability * 256;
+            component.front->reliability = calculateInitialBogieReliability(*likeNewObject);
+            // TODO have no idea what this does
+            //sub_4BA873(component);
         }
         // TODO Technically it should be part purchases, part sale, but that's a future improvement
         GameCommands::setExpenditureType(ExpenditureType::VehiclePurchases);

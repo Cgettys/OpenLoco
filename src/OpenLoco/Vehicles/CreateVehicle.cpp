@@ -1,7 +1,6 @@
 #include "../Audio/Audio.h"
 #include "../CompanyManager.h"
 #include "../Core/Optional.hpp"
-#include "../Date.h"
 #include "../Economy/Economy.h"
 #include "../Economy/Expenditures.h"
 #include "../Entities/EntityManager.h"
@@ -16,6 +15,7 @@
 #include "../Station.h"
 #include "../Types.hpp"
 #include "../Ui/WindowManager.h"
+#include "CreateVehicle.h"
 #include "Vehicle.h"
 #include <numeric>
 #include <utility>
@@ -174,23 +174,7 @@ namespace OpenLoco::Vehicles
             return nullptr;
         }
         newBogie->var_38 = 0;
-
-        int32_t reliability = vehObject.reliability * 256;
-        if (getCurrentYear() + 2 > vehObject.designed)
-        {
-            // Reduce reliability by an eighth after 2 years past design
-            reliability -= reliability / 8;
-            if (getCurrentYear() + 3 > vehObject.designed)
-            {
-                // Reduce reliability by a further eighth (quarter total) after 3 years past design
-                reliability -= reliability / 8;
-            }
-        }
-        if (reliability != 0)
-        {
-            reliability += 255;
-        }
-        newBogie->reliability = reliability;
+        newBogie->reliability = calculateInitialBogieReliability(vehObject);
         sub_4BA873(newBogie);
 
         // Calculate refund cost == 7/8 * cost
